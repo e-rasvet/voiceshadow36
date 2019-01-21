@@ -1,0 +1,33 @@
+HTTPS::on
+HTTP_HOST::learn.core.kochi-tech.ac.jp
+HTTP_CONNECTION::keep-alive
+HTTP_CACHE_CONTROL::max-age=0
+HTTP_UPGRADE_INSECURE_REQUESTS::1
+HTTP_USER_AGENT::Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 YaBrowser/17.1.0.2034 Yowser/2.5 Safari/537.36
+HTTP_ACCEPT::text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+HTTP_DNT::1
+HTTP_ACCEPT_ENCODING::gzip, deflate, sdch, br
+HTTP_ACCEPT_LANGUAGE::ru,en;q=0.8
+HTTP_COOKIE::MOODLEID1_=%25AF%2582SY%2524; MoodleSession=tn8rajl05gfgp0o36v6obj5ho0
+PATH::/sbin:/usr/sbin:/bin:/usr/bin
+SERVER_SIGNATURE::<address>Apache/2.2.3 (CentOS) Server at learn.core.kochi-tech.ac.jp Port 443</address>
+
+SERVER_SOFTWARE::Apache/2.2.3 (CentOS)
+SERVER_NAME::learn.core.kochi-tech.ac.jp
+SERVER_ADDR::222.229.71.25
+SERVER_PORT::443
+REMOTE_ADDR::5.141.203.186
+DOCUMENT_ROOT::/var/www/html/
+SERVER_ADMIN::root@localhost
+SCRIPT_FILENAME::/var/www/html/moodle3/mod/voiceshadow/file.php
+REMOTE_PORT::37066
+GATEWAY_INTERFACE::CGI/1.1
+SERVER_PROTOCOL::HTTP/1.1
+REQUEST_METHOD::GET
+QUERY_STRING::file=91
+REQUEST_URI::/moodle3/mod/voiceshadow/file.php?file=91
+SCRIPT_NAME::/moodle3/mod/voiceshadow/file.php
+PHP_SELF::/moodle3/mod/voiceshadow/file.php
+REQUEST_TIME_FLOAT::1487061974.467
+REQUEST_TIME::1487061974
+
