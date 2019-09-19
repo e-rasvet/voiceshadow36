@@ -38,9 +38,14 @@ class mod_voiceshadow_mod_form extends moodleform_mod {
         $speedoptions = array( 0 => get_string('no'), 1 => get_string('fixedspeed', 'voiceshadow'), 2 => get_string('userspeed', 'voiceshadow'), 3 => get_string('fixedanduserspeed', 'voiceshadow'));
         $allowmultiple = array( 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5");
 
+        $speechtotextlangoptions = array( "en-US" => "English (United States)", "en-GB" => "English (Great Britain)", "en-AU" => "English (Australia)",
+            "es-ES" => "Español (España)", "ko-KR" => "한국어 (대한민국)", "ar-SA" => "العربية (السعودية)", "yue-Hant-HK" => "廣東話 (香港)",
+            "zh-TW"=>"國語（台灣）", "zh"=>"普通话（中国大陆）");
+
         $mform->addElement('select', 'preventlate', get_string('preventlate', 'voiceshadow'), $ynoptions);
         $mform->addElement('select', 'speechtotext', get_string('usespeechtotext', 'voiceshadow'), $ynoptions);
         $mform->addElement('select', 'showspeedbox', get_string('speedchange', 'voiceshadow'), $speedoptions);
+        $mform->addElement('select', 'speechtotextlang', get_string('speechtotextlang', 'voiceshadow'), $speechtotextlangoptions);
         $mform->setDefault('showspeedbox', 0);
         $mform->setDefault('preventlate', 0);
         $mform->addElement('select', 'allowmultiple', get_string('allowmultiple', 'voiceshadow'), $allowmultiple);

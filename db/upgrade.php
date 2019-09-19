@@ -146,6 +146,16 @@ function xmldb_voiceshadow_upgrade($oldversion=0) {
         upgrade_mod_savepoint(true, 2017073000, 'voiceshadow');
     }
 
+    if ($oldversion < 2019090100) {
+        $table = new xmldb_table('voiceshadow');
+        $field = new xmldb_field('speechtotextlang', XMLDB_TYPE_CHAR, '12', null,  XMLDB_NOTNULL, null, 'en', 'timemodified');
+        // Launch change of type for field grade.
+        $dbman->add_field($table, $field);
+
+        // Assign savepoint reached.
+        upgrade_mod_savepoint(true, 2019090100, 'voiceshadow');
+    }
+
 
     /*
     if ($oldversion < 2018033000) {

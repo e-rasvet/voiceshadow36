@@ -661,10 +661,27 @@ setInterval(function(){
 
                 $mediadata .= '
 
-  <div style="font-size: 21px;line-height: 40px;color: #333;">Record</div>
+  <!--<div style="font-size: 21px;line-height: 40px;color: #333;">Record</div>-->
+  
+  <div>
+   <svg width="48" height="48" viewBox="0 0 500 500" id="voiceShadowMicSvg" style="float: left">
+    <path d="M242.25,306c43.35,0,76.5-33.15,76.5-76.5v-153c0-43.35-33.15-76.5-76.5-76.5c-43.35,0-76.5,33.15-76.5,76.5v153 C165.75,272.85,198.9,306,242.25,306z M377.4,229.5c0,76.5-63.75,130.05-135.15,130.05c-71.4,0-135.15-53.55-135.15-130.05H63.75 c0,86.7,68.85,158.1,153,170.85v84.15h51v-84.15c84.15-12.75,153-84.149,153-170.85H377.4L377.4,229.5z"/>
+    </svg>
+    
+    <ul style="float: left; list-style-type:none;font-size: 34px;color: #ccc;" onclick="$(\'#voiceshadow_recordingCounter_OnOf\').toggle();$(\'.voiceshadow_counter_numbers\').toggle();">
+    <li style="display:none;" id="voiceshadow_recordingCounter_OnOf">Recording counter disabled</li>
+    <li style="float: left" class="voiceshadow_counter_numbers" id="voiceShadow_timer_Min">00</li>
+    <li style="float: left" class="voiceshadow_counter_numbers">:</li>
+    <li style="float: left" class="voiceshadow_counter_numbers" id="voiceShadow_timer_Sec">00</li>
+    <li style="float: left" class="voiceshadow_counter_numbers">:</li>
+    <li style="float: left" class="voiceshadow_counter_numbers" id="voiceShadow_timer_milSec">00</li>
+</ul>
+<div style="clear: both"></div>
 
-  <img src="img/spiffygif_30x30.gif" style="display:none;" id="html5-mp3-loader"/>
-  <button onclick="startRecording(this);" id="btn_rec" disabled>record</button>
+</div>
+
+  <!--<img src="img/spiffygif_30x30.gif" style="display:none;" id="html5-mp3-loader"/>-->
+  <button onclick="startRecording(this);" id="btn_rec" disabled style="margin-left: 60px;">record</button>
   <button onclick="stopRecording(this);" id="btn_stop" disabled>stop</button>
 
   <div style="margin: 20px 0;">'.$additionalCodeSpeechToTextBox.'</div>
@@ -676,6 +693,15 @@ setInterval(function(){
   <pre id="log" style="display:none"></pre>
 
   <script>
+  
+  recognition.lang = "'.$voiceshadow->speechtotextlang.'";
+  
+  var timerCount = 0;
+  var timerCountMilSec = 0;
+  
+  var btnRecordSvg;
+  var btnRecordSec;
+  var btnRecordMilSec;
 
   $(".selectaudiomodel").click(function(){
     $("#audioshadowmp3").attr("src", $(this).parent().find("audio").attr("src"));
@@ -705,6 +731,66 @@ setInterval(function(){
   }
 
   function startRecording(button) {
+      $("#voiceShadow_timer_Min").html("00");
+      $("#voiceShadow_timer_Sec").html("00");
+      $("#voiceShadow_timer_milSec").html("00");
+      
+      timerCount = 0;
+      timerCountMilSec = 0;
+      
+      btnRecordSvg = setInterval(function () {
+                if ($("svg#voiceShadowMicSvg").attr("fill") == "red") {
+                    $("svg#voiceShadowMicSvg").attr("fill", "black");
+                } else {
+                    $("svg#voiceShadowMicSvg").attr("fill", "red");    
+                }
+      }, 500);
+      
+      
+      btnRecordMilSec = setInterval(function () {
+          timerCountMilSec = timerCountMilSec + 5;
+          
+          if (timerCountMilSec < 10) {
+              var print = "0" + timerCountMilSec; 
+          } else {
+              var print = timerCountMilSec;
+          }
+          
+          $("#voiceShadow_timer_milSec").html(print);
+          
+          if (timerCountMilSec >= 59.95) {
+              timerCountMilSec = 0;
+          }
+          
+      }, 50);
+      
+      
+      btnRecordSec = setInterval(function () {
+          timerCount = timerCount + 1;
+                
+          var min = $("#voiceShadow_timer_Min").html();
+          var sec = $("#voiceShadow_timer_Sec").html();
+                
+          if (sec >= 59) {
+              sec = "00";
+              min = parseInt(min, 10) + 1;
+              
+              if (min <= 9){
+                 min = "0" + min;
+              }
+          } else {
+              sec = parseInt(sec, 10) + 1;
+              if (sec <= 9) {
+                  sec = "0" + sec;
+              }
+          } 
+          
+                
+          $("#voiceShadow_timer_Sec").html(sec);
+          $("#voiceShadow_timer_Min").html(min);
+                
+      }, 1000);
+            
     recorder.startRecording();
     button.disabled = true;
     button.nextElementSibling.disabled = false;
@@ -712,6 +798,13 @@ setInterval(function(){
   }
 
   function stopRecording(button) {
+      clearTimeout(btnRecordSec);
+      clearTimeout(btnRecordSvg);
+      clearTimeout(btnRecordMilSec);
+      $("svg#voiceShadowMicSvg").attr("fill", "black");
+      
+      console.log(timerCount);
+      
     recorder.finishRecording();
     button.disabled = true;
     button.previousElementSibling.disabled = false;
@@ -979,6 +1072,17 @@ function callbackjs(e){
             for ($i = 1; $i <= 5; $i++) {
                 $name = "var{$i}";
                 $nametext = "var{$i}text";
+
+
+                /*
+                 * Hide select box if only one recording exist
+                 */
+                if (empty($voiceshadow->var2)) {
+                    $hideFirstCheckboxMark = "display: none;";
+                } else {
+                    $hideFirstCheckboxMark = "";
+                }
+
                 if (!empty($voiceshadow->{$name})) {
                     if ($item = $DB->get_record("files", array("id" => $voiceshadow->{$name}))) {
 
@@ -993,11 +1097,11 @@ function callbackjs(e){
                             $checked = '';
 
                         if ($voiceshadow->shadowingmode == 2) {
-                            $o = '<div style="margin:10px 0">
+                            $o = '<div style="margin:10px 0;'.$hideFirstCheckboxMark.'">
                       <input type="radio" name="selectaudiomodel" value="' . $i . '" class="selectaudiomodel" id="id_selectaudiomodel_' . $i . '" style="float: left;margin: 0 20px 0 0;" ' . $checked . ' data-url="voiceshadow://?link=' . $CFG->wwwroot . '&id=' . $id . '&uid=' . $USER->id . '&fid=' . $audioVars[$i] . '&time=' . $time . '&var=' . $i . '&audioBtn=0&mod=voiceshadow" />
                       ';
                         } else {
-                            $o = '<div style="margin:10px 0">
+                            $o = '<div style="margin:10px 0;'.$hideFirstCheckboxMark.'">
                       <input type="radio" name="selectaudiomodel" value="' . $i . '" class="selectaudiomodel" id="id_selectaudiomodel_' . $i . '" style="float: left;margin: 0 20px 0 0;" ' . $checked . ' data-url="voiceshadow://?link=' . $CFG->wwwroot . '&id=' . $id . '&uid=' . $USER->id . '&fid=' . $audioVars[$i] . '&time=' . $time . '&var=' . $i . '&audioBtn=1&type=voiceshadow&mod=voiceshadow" />
                       ';
                         }

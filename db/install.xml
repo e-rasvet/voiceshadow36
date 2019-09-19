@@ -46,7 +46,8 @@
         <FIELD NAME="grademethodt" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" DEFAULT="default" ENUM="false" PREVIOUS="grademethod" NEXT="timedue"/>
         <FIELD NAME="timedue" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="grademethodt" NEXT="timeavailable"/>
         <FIELD NAME="timeavailable" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timedue" NEXT="timemodified"/>
-        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="timeavailable" />
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="timeavailable"  NEXT="speechtotextlang"/>
+          <FIELD NAME="speechtotextlang" TYPE="char" LENGTH="12" NOTNULL="true" SEQUENCE="false" DEFAULT="en" ENUM="false" PREVIOUS="timeavailable"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id" />

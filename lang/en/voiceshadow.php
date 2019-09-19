@@ -309,6 +309,7 @@ $string['html5']      = 'HTML 5';
 $string['flash']      = 'Flash';
 $string['recordertype']      = 'Recorder';
 $string['autoswitch']      = 'Auto Switch';
+$string['speechtotextlang']      = 'Language';
 
 $string['voiceshadow:addinstance']      = 'voiceshadow:addinstance';
 $string['voiceshadow:bulkupload']      = 'voiceshadow:bulkupload';
