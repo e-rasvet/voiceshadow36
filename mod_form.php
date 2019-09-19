@@ -39,8 +39,9 @@ class mod_voiceshadow_mod_form extends moodleform_mod {
         $allowmultiple = array( 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5");
 
         $speechtotextlangoptions = array( "en-US" => "English (United States)", "en-GB" => "English (Great Britain)", "en-AU" => "English (Australia)",
-            "es-ES" => "Español (España)", "ko-KR" => "한국어 (대한민국)", "ar-SA" => "العربية (السعودية)", "yue-Hant-HK" => "廣東話 (香港)",
-            "zh-TW"=>"國語（台灣）", "zh"=>"普通话（中国大陆）");
+            "de-DE" => "Deutsch (Deutschland)", "es-ES" => "Español (España)", "fr-FR" => "Français (France)", "it-IT" => "Italiano (Italia)", "ru-RU" => "Русский (Россия)",
+            "ko-KR" => "한국어 (대한민국)", "ar-SA" => "العربية (السعودية)", "yue-Hant-HK" => "廣東話 (香港)",
+            "zh-TW"=>"國語（台灣）", "zh"=>"普通话（中国大陆）", "ja-JP"=>"日本語（日本）");
 
         $mform->addElement('select', 'preventlate', get_string('preventlate', 'voiceshadow'), $ynoptions);
         $mform->addElement('select', 'speechtotext', get_string('usespeechtotext', 'voiceshadow'), $ynoptions);
