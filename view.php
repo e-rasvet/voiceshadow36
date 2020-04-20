@@ -58,7 +58,9 @@ if (!empty($delfilename)) {
 
 
 //if (voiceshadow_is_ios() && is_dir($CFG->dirroot.'/theme/mymobile')) {} else
-$PAGE->requires->js('/mod/voiceshadow/js/jquery.min.js', true);
+
+//$PAGE->requires->js('/mod/voiceshadow/js/jquery.min.js', true);
+$PAGE->requires->jquery();
 
 //$PAGE->requires->js_function_call('M.util.load_flowplayer');
 //$PAGE->requires->js('/mod/voiceshadow/js/ajax.js', true);
@@ -67,8 +69,12 @@ $PAGE->requires->js('/mod/voiceshadow/js/flowplayer.min.js', true);
 $PAGE->requires->js('/mod/voiceshadow/js/swfobject.js', true);
 $PAGE->requires->js('/mod/voiceshadow/js/WebAudioRecorder.min.js?3', true);
 
-if ($a == "add")
-    $PAGE->requires->js('/mod/voiceshadow/js/main_vs_pl.js?8', true);
+if ($a == "add") {
+    if ($CFG->voiceshadow_stt_core == "google") {
+        $PAGE->requires->js('/mod/voiceshadow/js/main_vs_pl.js?8', true);
+    }
+}
+
 
 $PAGE->requires->css('/mod/voiceshadow/css/main.css?1');
 
@@ -590,6 +596,7 @@ if ($a == "add") {
             }
             //-------------- END -------------------------------------//
 
+
             //-------------- Record ----------------//
             if ($voiceshadow->recorder == 0) {
                 if (voiceshadow_is_ios()) {
@@ -607,33 +614,39 @@ if ($a == "add") {
 
             $mediadata = "";
 
-            if ($recorderType == "ios") { // || voiceshadow_get_browser() == 'android'
-                $mediadata .= html_writer::start_tag("h3", array("style" => "padding: 0 20px;"));
+            if ($CFG->voiceshadow_stt_core == "google") {
 
-                if ($voiceshadow->shadowingmode == 2) {
-                    $mediadata .= html_writer::start_tag("a", array("href" => 'voiceshadow://?link=' . $CFG->wwwroot . '&id=' . $id . '&uid=' . $USER->id . '&time=' . $time . '&fid=0&var=1&audioBtn=0&mod=voiceshadow', "id" => "id_recoring_link",
-                        "onclick" => 'formsubmit(this.href)'));
-                } else {
-                    $mediadata .= html_writer::start_tag("a", array("href" => 'voiceshadow://?link=' . $CFG->wwwroot . '&id=' . $id . '&uid=' . $USER->id . '&time=' . $time . '&fid=' . $audioVars[1] . '&var=1&audioBtn=1&sstBtn=1&type=voiceshadow&mod=voiceshadow', "id" => "id_recoring_link",  //
-                        "onclick" => 'formsubmit(this.href)'));
-                }
+                /*
+                 * Google recording
+                 */
+
+                if ($recorderType == "ios") { // || voiceshadow_get_browser() == 'android'
+                    $mediadata .= html_writer::start_tag("h3", array("style" => "padding: 0 20px;"));
+
+                    if ($voiceshadow->shadowingmode == 2) {
+                        $mediadata .= html_writer::start_tag("a", array("href" => 'voiceshadow://?link=' . $CFG->wwwroot . '&id=' . $id . '&uid=' . $USER->id . '&time=' . $time . '&fid=0&var=1&audioBtn=0&mod=voiceshadow', "id" => "id_recoring_link",
+                            "onclick" => 'formsubmit(this.href)'));
+                    } else {
+                        $mediadata .= html_writer::start_tag("a", array("href" => 'voiceshadow://?link=' . $CFG->wwwroot . '&id=' . $id . '&uid=' . $USER->id . '&time=' . $time . '&fid=' . $audioVars[1] . '&var=1&audioBtn=1&sstBtn=1&type=voiceshadow&mod=voiceshadow', "id" => "id_recoring_link",  //
+                            "onclick" => 'formsubmit(this.href)'));
+                    }
 
 
-                $mediadata .= get_string('recordvoice', 'voiceshadow');
-                $mediadata .= html_writer::end_tag('a');
-                $mediadata .= html_writer::end_tag('h3');
+                    $mediadata .= get_string('recordvoice', 'voiceshadow');
+                    $mediadata .= html_writer::end_tag('a');
+                    $mediadata .= html_writer::end_tag('h3');
 
-                $mediadata .= html_writer::start_tag("div", array("style" => "font-size: 21px;line-height: 40px;color: #333;"));
-                $mediadata .= "Recordings";
-                $mediadata .= html_writer::end_tag('div');
+                    $mediadata .= html_writer::start_tag("div", array("style" => "font-size: 21px;line-height: 40px;color: #333;"));
+                    $mediadata .= "Recordings";
+                    $mediadata .= html_writer::end_tag('div');
 
-                //$mediadata .= '<div id="recordappfile_debug" controls></div>';
+                    //$mediadata .= '<div id="recordappfile_debug" controls></div>';
 
-                $mediadata .= html_writer::start_tag("ul", array("id" => "recordingslist", "style" => "display:none; list-style-type: none;"));
-                $mediadata .= '<li><audio id="recordappfile_aac" controls></audio></li>';
-                $mediadata .= html_writer::end_tag('ul');
+                    $mediadata .= html_writer::start_tag("ul", array("id" => "recordingslist", "style" => "display:none; list-style-type: none;"));
+                    $mediadata .= '<li><audio id="recordappfile_aac" controls></audio></li>';
+                    $mediadata .= html_writer::end_tag('ul');
 
-                $mediadata .= html_writer::script('
+                    $mediadata .= html_writer::script('
 setInterval(function(){
     $.get( "ajax-apprecord.php", { id: ' . $id . ', uid: ' . $USER->id . ' }, function(json){
         var j = JSON.parse(json);
@@ -652,14 +665,15 @@ setInterval(function(){
     } );
 }, 1000);
                 ');
-            } else if ($recorderType == "html5") {
 
-                $additionalCodeSpeechToTextBox = "";
+                } else if ($recorderType == "html5") {
 
-                if ($voiceshadow->speechtotext == 1 && voiceshadow_get_browser() == 'chrome')
-                    $additionalCodeSpeechToTextBox = '<textarea id="speechtext" style="width: 650px;height: 40px;margin: 0 0 0 8px;" readonly></textarea>';
+                    $additionalCodeSpeechToTextBox = "";
 
-                $mediadata .= '
+                    if ($voiceshadow->speechtotext == 1 && voiceshadow_get_browser() == 'chrome')
+                        $additionalCodeSpeechToTextBox = '<textarea id="speechtext" style="width: 650px;height: 40px;margin: 0 0 0 8px;" readonly></textarea>';
+
+                    $mediadata .= '
 
   <!--<div style="font-size: 21px;line-height: 40px;color: #333;">Record</div>-->
   
@@ -681,10 +695,10 @@ setInterval(function(){
 </div>
 
   <!--<img src="img/spiffygif_30x30.gif" style="display:none;" id="html5-mp3-loader"/>-->
-  <button onclick="startRecording(this);" id="btn_rec" disabled style="margin-left: 60px;">record</button>
-  <button onclick="stopRecording(this);" id="btn_stop" disabled>stop</button>
+  <button onclick="startRecording(this);" id="btn_rec" disabled style="margin-left: 60px;"  class="button-xl">record</button>
+  <button onclick="stopRecording(this);" id="btn_stop" disabled  class="button-xl">stop</button>
 
-  <div style="margin: 20px 0;">'.$additionalCodeSpeechToTextBox.'</div>
+  <div style="margin: 20px 0;">' . $additionalCodeSpeechToTextBox . '</div>
 
   <div style="font-size: 21px;line-height: 40px;color: #333;">Recordings</div>
   <ul id="recordingslist" style="list-style-type: none;"></ul>
@@ -694,7 +708,7 @@ setInterval(function(){
 
   <script>
   
-  recognition.lang = "'.$voiceshadow->speechtotextlang.'";
+  recognition.lang = "' . $CFG->voiceshadow_speechtotextlang . '";
   
   var timerCount = 0;
   var timerCountMilSec = 0;
@@ -1001,31 +1015,31 @@ setInterval(function(){
   });
 </script>';
 
-                if (isset($linkhtml5mp3))
-                    $mediadata .= ' <audio src="' . $linkhtml5mp3 . '" id="audioshadowmp3" autobuffer="autobuffer" data-url="' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '"></audio>
+                    if (isset($linkhtml5mp3))
+                        $mediadata .= ' <audio src="' . $linkhtml5mp3 . '" id="audioshadowmp3" autobuffer="autobuffer" data-url="' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '"></audio>
                   ';
-                else
-                    $mediadata .= ' <audio src="" id="audioshadowmp3" autobuffer="autobuffer" data-url="' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '"></audio>
+                    else
+                        $mediadata .= ' <audio src="" id="audioshadowmp3" autobuffer="autobuffer" data-url="' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '"></audio>
                   ';
-            } else {
-                $filename = str_replace(" ", "_", $USER->username) . "_" . date("Ymd_Hi", $time);
+                } else {
+                    $filename = str_replace(" ", "_", $USER->username) . "_" . date("Ymd_Hi", $time);
 
-                $speechcode = "";
+                    $speechcode = "";
 
-                $mediadata = html_writer::script('var flashvars={};flashvars.gain=35;flashvars.rate=44;flashvars.call="callbackjs";flashvars.name = "' . $filename . '";flashvars.p = "' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '";flashvars.url = "' . urlencode(new moodle_url("/mod/voiceshadow/uploadmp3.php")) . '";' . $speechcode . 'swfobject.embedSWF("' . (new moodle_url("/mod/voiceshadow/js/recorder.swf")) . '", "mp3_flash_recorder", "220", "200", "9.0.0", "expressInstall.swf", flashvars);');
-                $mediadata .= '<div id="mp3_flash_recorder"></div><div id="mp3_flash_records" style="margin:20px 0;"></div>';
-
-
-                /*
-                * Safari fix
-                */
-                if (voiceshadow_get_browser() == 'safari')
-                    $preplayer = '<embed xmlns="http://www.w3.org/1999/xhtml" align="" allowFullScreen="false" flashvars="src=' . $CFG->wwwroot . '\'+obj.url+\'" height="15" width="90" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="' . (new moodle_url("/mod/voiceshadow/js/mp3player.swf")) . '" type="application/x-shockwave-flash" />';
-                else
-                    $preplayer = '<audio controls id="peviewaudio" oncanplay="this.volume=1"><source src="' . $CFG->wwwroot . '\'+obj.url+\'" preload="auto" type="audio/mpeg"></audio>';
+                    $mediadata = html_writer::script('var flashvars={};flashvars.gain=35;flashvars.rate=44;flashvars.call="callbackjs";flashvars.name = "' . $filename . '";flashvars.p = "' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '";flashvars.url = "' . urlencode(new moodle_url("/mod/voiceshadow/uploadmp3.php")) . '";' . $speechcode . 'swfobject.embedSWF("' . (new moodle_url("/mod/voiceshadow/js/recorder.swf")) . '", "mp3_flash_recorder", "220", "200", "9.0.0", "expressInstall.swf", flashvars);');
+                    $mediadata .= '<div id="mp3_flash_recorder"></div><div id="mp3_flash_records" style="margin:20px 0;"></div>';
 
 
-                echo html_writer::script('
+                    /*
+                    * Safari fix
+                    */
+                    if (voiceshadow_get_browser() == 'safari')
+                        $preplayer = '<embed xmlns="http://www.w3.org/1999/xhtml" align="" allowFullScreen="false" flashvars="src=' . $CFG->wwwroot . '\'+obj.url+\'" height="15" width="90" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="' . (new moodle_url("/mod/voiceshadow/js/mp3player.swf")) . '" type="application/x-shockwave-flash" />';
+                    else
+                        $preplayer = '<audio controls id="peviewaudio" oncanplay="this.volume=1"><source src="' . $CFG->wwwroot . '\'+obj.url+\'" preload="auto" type="audio/mpeg"></audio>';
+
+
+                    echo html_writer::script('
 function chooserecord(e){
 console.log("1");
   $(".choosingrecord").html(\'<img src="' . (new moodle_url("/mod/voiceshadow/img/right-arrow-gray.png")) . '" style="margin-top: 6px;"/>\');
@@ -1061,6 +1075,80 @@ function callbackjs(e){
 
 }
 ');
+
+                }
+
+            } else if($CFG->voiceshadow_stt_core == "amazon") {
+                /*
+                 * Amazon recording
+                 */
+
+
+                $additionalCodeSpeechToTextBox = "";
+
+                if ($voiceshadow->speechtotext == 1)
+                    $additionalCodeSpeechToTextBox = '<textarea id="speechtext" style="width: 650px;height: 80px;margin: 0 0 0 8px;" readonly></textarea>';
+
+
+                $mediadata .= html_writer::start_tag('div');
+                $mediadata .= html_writer::empty_tag('input', array('type' => 'hidden',
+                    'name' => "amazon_language", 'value' => $CFG->voiceshadow_speechtotextlang));
+                $mediadata .= html_writer::empty_tag('input', array('type' => 'hidden',
+                    'name' => "amazon_region", 'value' => $CFG->voiceshadow_amazon_region));
+                $mediadata .= html_writer::empty_tag('input', array('type' => 'hidden',
+                    'name' => "amazon_accessid", 'value' => $CFG->voiceshadow_amazon_accessid));
+                $mediadata .= html_writer::empty_tag('input', array('type' => 'hidden',
+                    'name' => "amazon_secretkey", 'value' => $CFG->voiceshadow_amazon_secretkey));
+                $mediadata .= html_writer::end_tag('div');
+
+
+                $mediadata .= '
+  
+  <div>
+   <svg width="48" height="48" viewBox="0 0 500 500" id="voiceShadowMicSvg" style="float: left">
+    <path d="M242.25,306c43.35,0,76.5-33.15,76.5-76.5v-153c0-43.35-33.15-76.5-76.5-76.5c-43.35,0-76.5,33.15-76.5,76.5v153 C165.75,272.85,198.9,306,242.25,306z M377.4,229.5c0,76.5-63.75,130.05-135.15,130.05c-71.4,0-135.15-53.55-135.15-130.05H63.75 c0,86.7,68.85,158.1,153,170.85v84.15h51v-84.15c84.15-12.75,153-84.149,153-170.85H377.4L377.4,229.5z"/>
+    </svg>
+    
+    <ul style="float: left; list-style-type:none;font-size: 34px;color: #ccc;" onclick="$(\'#voiceshadow_recordingCounter_OnOf\').toggle();$(\'.voiceshadow_counter_numbers\').toggle();">
+    <li style="display:none;" id="voiceshadow_recordingCounter_OnOf">Recording counter disabled</li>
+    <li style="float: left" class="voiceshadow_counter_numbers" id="voiceShadow_timer_Min">00</li>
+    <li style="float: left" class="voiceshadow_counter_numbers">:</li>
+    <li style="float: left" class="voiceshadow_counter_numbers" id="voiceShadow_timer_Sec">00</li>
+    <li style="float: left" class="voiceshadow_counter_numbers">:</li>
+    <li style="float: left" class="voiceshadow_counter_numbers" id="voiceShadow_timer_milSec">00</li>
+</ul>
+<div style="clear: both"></div>
+
+</div>
+
+  <!--<img src="img/spiffygif_30x30.gif" style="display:none;" id="html5-mp3-loader"/>-->
+  <button id="start-button" disabled style="margin-left: 60px;" class="button-xl" title="Start Transcription">     
+    <i class="fa fa-microphone"></i> Start
+  </button>
+  <button id="stop-button" class="button-xl" disabled>
+    <i class="fa fa-stop-circle"></i> Stop
+  </button>
+
+  <div style="margin: 20px 0;">' . $additionalCodeSpeechToTextBox . '</div>
+
+  <div style="font-size: 21px;line-height: 40px;color: #333;">Recordings</div>
+  <ul id="mp3_file" style="list-style-type: none;"></ul>
+
+  <div style="font-size: 21px;line-height: 40px;color: #333;display:none;">Log</div>
+  <pre id="log" style="display:none"></pre>
+';
+
+                if (isset($linkhtml5mp3))
+                    $mediadata .= ' <audio src="' . $linkhtml5mp3 . '" id="audioshadowmp3" autobuffer="autobuffer" data-url="' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '"></audio>
+                  ';
+                else
+                    $mediadata .= ' <audio src="" id="audioshadowmp3" autobuffer="autobuffer" data-url="' . urlencode(json_encode(array("id" => $id, "userid" => $USER->id))) . '"></audio>
+                  ';
+
+
+
+                $mediadata .= html_writer::script(null, new moodle_url('/mod/voiceshadow/js/amazon/lame.js'));
+                $mediadata .= html_writer::script(null, new moodle_url('/mod/voiceshadow/js/amazon/main.js'));
 
             }
 

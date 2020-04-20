@@ -2,12 +2,12 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="814cd2d6-2cb0-44a5-ac3a-46692b37e79e" name="fltrk.biz" url="http://biz214.inmotionhosting.com">
-        <fileTransfer host="biz214.inmotionhosting.com" port="2222" privateKey="$USER_HOME$/.ssh/id_rsa_fltrk_net" accessType="SFTP" keyPair="true">
+      <webServer id="814cd2d6-2cb0-44a5-ac3a-46692b37e79e" name="fltrk.biz" url="http://vps44784.inmotionhosting.com">
+        <fileTransfer host="vps44784.inmotionhosting.com" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="2222" />
+          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

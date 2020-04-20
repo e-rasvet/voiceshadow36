@@ -5,7 +5,7 @@
       <paths name="fltrk.biz">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/fltrcn5/public_html/moodle/mod/voiceshadow" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/fltrcb6/public_html/moodle/mod/voiceshadow" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

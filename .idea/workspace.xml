@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b0db3e-0908-4aa1-b188-44c9cf11f81c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/js/amazon/lame.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/amazon/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/en/voiceshadow.php" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en/voiceshadow.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/settings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +27,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QvWryCyqSaRPB1fpMmzQm1PqJs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/js/amazon" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -30,17 +44,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/amazon" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/amazon" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -65,10 +75,35 @@
       <workItem from="1568873686489" duration="910000" />
       <workItem from="1568883438987" duration="483000" />
       <workItem from="1568901866840" duration="237000" />
+      <workItem from="1586761972636" duration="837000" />
+      <workItem from="1586857213536" duration="974000" />
+      <workItem from="1586869357768" duration="683000" />
+      <workItem from="1586931236307" duration="2053000" />
+      <workItem from="1587109902545" duration="7356000" />
+      <workItem from="1587118949257" duration="496000" />
+      <workItem from="1587119735696" duration="484000" />
+      <workItem from="1587214875722" duration="1281000" />
+      <workItem from="1587364998126" duration="7000" />
+      <workItem from="1587365040672" duration="3000" />
+      <workItem from="1587365141352" duration="103000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="85" key="#Deployment" timestamp="1586869535143">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="320" y="85" key="#Deployment/0.23.1440.793@0.23.1440.793" timestamp="1586869535143" />
+    <state x="386" y="176" width="667" height="486" key="find.popup" timestamp="1586932664818">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="386" y="176" width="667" height="486" key="find.popup/0.23.1440.793@0.23.1440.793" timestamp="1586932664818" />
+    <state x="627" y="157" key="ftp.server.browser" timestamp="1586762392831">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="627" y="157" key="ftp.server.browser/0.23.1440.793@0.23.1440.793" timestamp="1586762392831" />
   </component>
 </project>

@@ -29,3 +29,20 @@ The voiceshadow follows standard installation procedures.
 Place the "voiceshadow" directory in your mod directory.
 Then visit the Admin page in Moodle to activate it.
 Add link to media convert server on module settings page.
+
+
+####How to get Amazon Transcribe Access key
+
+1. You need to sign up amazon transcribe account:
+https://portal.aws.amazon.com/billing/signup#/start
+2. Login.
+3. Go to AWS IAM console https://console.aws.amazon.com/iam/home#/home
+4. Create new user
+5. Give new user role "AmazonTranscribeFullAccess"
+6. And create new access key: User -> click to username -> Security
+credentials -> Create access key.
+
+ 
+
+
+@copyright  Igor Nikulin, Paul Daniels, Nobuhiro Kumai

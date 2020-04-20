@@ -321,3 +321,10 @@ $string['voiceshadow:submit']      = 'voiceshadow:submit';
 $string['voiceshadow:view']      = 'voiceshadow:view';
 $string['voiceshadow:grade']      = 'voiceshadow:grade';
 $string['voiceshadow:exportownsubmission']      = 'voiceshadow:exportownsubmission';
+
+
+$string['amazon_secretkey'] = 'Secret Key';
+$string['amazon_accessid'] = 'Access ID';
+$string['amazon_region'] = 'Region';
+$string['stt_core'] = 'Speech to text core';
+
