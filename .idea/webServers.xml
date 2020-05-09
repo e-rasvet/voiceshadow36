@@ -10,6 +10,14 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="3456fbe2-eb2b-4689-8281-9b84db42a7e0" name="172.105.193.141" url="https://li1835-141.members.linode.com/moodle/">
+        <fileTransfer host="172.105.193.141" port="7822" privateKey="$USER_HOME$/.ssh/private-open-ssh" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="7822" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

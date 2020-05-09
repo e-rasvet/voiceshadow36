@@ -283,7 +283,7 @@ if ($a == "list") {
             $o .= html_writer::tag('div', "(" . $voiceshadow->{$name} . ")");
 
 
-        if (!empty($list->speechtext))
+        if (!empty($list->speechtext) && $voiceshadow->speechtotext == 1)
             $o .= html_writer::tag('div', '<a href="#" onclick="$(this).parent().find(\'div\').toggle();return false;">Speech text (Show/Hide)</a>: <div style="display:none">' . $list->speechtext . "</div>");
 
         if ($voiceshadow->showscore == 1)
@@ -1086,8 +1086,13 @@ function callbackjs(e){
 
                 $additionalCodeSpeechToTextBox = "";
 
-                if ($voiceshadow->speechtotext == 1)
-                    $additionalCodeSpeechToTextBox = '<textarea id="speechtext" style="width: 650px;height: 80px;margin: 0 0 0 8px;" readonly></textarea>';
+                if ($voiceshadow->speechtotext == 1) {
+                    $voiceshadow_speechtotext_visible_css = "";
+                } else {
+                    $voiceshadow_speechtotext_visible_css = "display: none;";
+                }
+
+                $additionalCodeSpeechToTextBox = '<textarea id="speechtext" style="width: 650px;height: 80px;margin: 0 0 0 8px;'.$voiceshadow_speechtotext_visible_css.'" readonly></textarea>';
 
 
                 $mediadata .= html_writer::start_tag('div');
@@ -1232,7 +1237,7 @@ function callbackjs(e){
             } else
                 $mform->addelEment('hidden', 'act', 'newinstance');
 
-            if ($voiceshadow->speechtotext == 1)
+            //if ($voiceshadow->speechtotext == 1)  /* TEST TRY TO DISABLE ELEMENT */
                 $mform->addelEment('hidden', 'speechtext', 'null', array('id' => 'id_speechtext'));
             //-------------- Record -------END------//
 

@@ -56,8 +56,9 @@ class mod_voiceshadow_mod_form extends moodleform_mod {
         
         
         $mform->addElement('header', 'typedesc', get_string("participantsgrading", 'voiceshadow'));
-        
-        $mform->addElement('select', 'showscore', get_string('showscore', 'voiceshadow'), $ynoptions);
+
+        /* Disable Computerized score temporarily */
+        //$mform->addElement('select', 'showscore', get_string('showscore', 'voiceshadow'), $ynoptions);
         
         $mform->addElement('select', 'grade', get_string('grade'), array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5'));
         $mform->setDefault('grade', 5);

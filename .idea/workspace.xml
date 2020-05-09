@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b0db3e-0908-4aa1-b188-44c9cf11f81c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/js/amazon/lame.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/amazon/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/en/voiceshadow.php" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en/voiceshadow.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/settings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/amazon/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/amazon/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/mod_form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +82,14 @@
       <workItem from="1587364998126" duration="7000" />
       <workItem from="1587365040672" duration="3000" />
       <workItem from="1587365141352" duration="103000" />
+      <workItem from="1587712376240" duration="456000" />
+      <workItem from="1588230064793" duration="527000" />
+      <workItem from="1588232021036" duration="1274000" />
+      <workItem from="1588313364360" duration="1201000" />
+      <workItem from="1588351817378" duration="200000" />
+      <workItem from="1588590754868" duration="818000" />
+      <workItem from="1588592465642" duration="461000" />
+      <workItem from="1588689337877" duration="2251000" />
     </task>
     <servers />
   </component>
@@ -93,14 +97,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="85" key="#Deployment" timestamp="1586869535143">
+    <state x="97" y="77" key="#Deployment" timestamp="1588230690653">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="320" y="85" key="#Deployment/0.23.1440.793@0.23.1440.793" timestamp="1586869535143" />
-    <state x="386" y="176" width="667" height="486" key="find.popup" timestamp="1586932664818">
+    <state x="97" y="77" key="#Deployment/0.23.1440.793@0.23.1440.793" timestamp="1588230690653" />
+    <state x="386" y="176" width="667" height="486" key="find.popup" timestamp="1588592738417">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="386" y="176" width="667" height="486" key="find.popup/0.23.1440.793@0.23.1440.793" timestamp="1586932664818" />
+    <state x="386" y="176" width="667" height="486" key="find.popup/0.23.1440.793@0.23.1440.793" timestamp="1588592738417" />
     <state x="627" y="157" key="ftp.server.browser" timestamp="1586762392831">
       <screen x="0" y="23" width="1440" height="793" />
     </state>

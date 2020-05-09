@@ -472,10 +472,11 @@ var handleEventStreamMessage = function handleEventStreamMessage(messageJson) {
       transcript = decodeURIComponent(escape(transcript)); // update the textarea with the latest result
 
       $('#speechtext').val(transcription + transcript + "\n"); // if this transcript segment is final, add it to the overall transcription
+      $("#id_speechtext").val(transcription + transcript + "\n");
 
       if (!results[0].IsPartial) {
         //scroll the textarea down
-        $('#speechtext').scrollTop($('#speechtext')[0].scrollHeight);
+        //$('#speechtext').scrollTop($('#speechtext')[0].scrollHeight);
         transcription += transcript + "\n";
       }
     }
@@ -537,12 +538,13 @@ $('#stop-button').click(function () {
 
     var id = 'transcript_'+$('.selectaudiomodel').val();
 
-    $("#id_speechtext").val("" + $("#speechtext").val() + "");
+    //$("#id_speechtext").val("" + $("#speechtext").val() + "");
 
     //console.log($('.selectaudiomodel').val()+"/"+$("input[name='instanceid']").val()+"-selected");
     //console.log($('#'+id).text()+"/"+$("#speechtext").val());
     $.post( "ajax-score.php", { text1: $('#'+id).text(), text2: $("#speechtext").val() }, function( data ) {
-        $('#p-rec-notice').text("computerized score: "+data+"%");
+        console.log("computerized score: "+data+"%");
+        //$('#p-rec-notice').text("computerized score: "+data+"%");
     });
 
 });

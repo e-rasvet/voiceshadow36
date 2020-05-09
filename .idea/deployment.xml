@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="fltrk.biz">
+  <component name="PublishConfigData" autoUpload="Always" serverName="172.105.193.141">
     <serverData>
+      <paths name="172.105.193.141">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/html/moodle/mod/voiceshadow" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="fltrk.biz">
         <serverdata>
           <mappings>
