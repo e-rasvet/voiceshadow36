@@ -1,5 +1,9 @@
 window.typeRoot = M.cfg.wwwroot + "/mod/voiceshadow";
 
+$(".selectaudiomodel").click(function(){
+    $("#audioshadowmp3").attr("src", $(this).parent().find("audio").attr("src"));
+    __log($(this).parent().find("audio").attr("src"));
+});
 
 function __log(e, data) {
     //log.innerHTML += "\n" + e + " " + (data || '');
@@ -27,6 +31,8 @@ function loadAudio(){
 
 function startAudio(){
     __log('MP3 Audio Play');
+    $('#speechtext').val("");
+    $("#id_speechtext").val("");
     audio.trigger('play');
 }
 
@@ -295,6 +301,8 @@ var btnRecordMilSec;
 
 
 $('#start-button').click(function () {
+
+    transcription = "";
 
     /*
      * Timer start

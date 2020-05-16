@@ -1153,7 +1153,7 @@ function callbackjs(e){
 
 
                 $mediadata .= html_writer::script(null, new moodle_url('/mod/voiceshadow/js/amazon/lame.js'));
-                $mediadata .= html_writer::script(null, new moodle_url('/mod/voiceshadow/js/amazon/main.js'));
+                $mediadata .= html_writer::script(null, new moodle_url('/mod/voiceshadow/js/amazon/main.js?1'));
 
             }
 

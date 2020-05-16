@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b0db3e-0908-4aa1-b188-44c9cf11f81c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/amazon/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/amazon/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/mod_form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +87,7 @@
       <workItem from="1588590754868" duration="818000" />
       <workItem from="1588592465642" duration="461000" />
       <workItem from="1588689337877" duration="2251000" />
+      <workItem from="1589606581007" duration="1361000" />
     </task>
     <servers />
   </component>
