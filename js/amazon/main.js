@@ -12,7 +12,10 @@ function __log(e, data) {
 
 function jInit(){
     audio = $("#audioshadowmp3");
-    addEventHandlers();
+
+    if ($("input[name=audioshadow]").val() == 1) {
+        addEventHandlers();
+    }
 }
 
 function addEventHandlers(){

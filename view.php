@@ -76,7 +76,7 @@ if ($a == "add") {
 }
 
 
-$PAGE->requires->css('/mod/voiceshadow/css/main.css?1');
+$PAGE->requires->css('/mod/voiceshadow/css/main.css?3');
 
 
 if ($act == "addlike") {
@@ -207,6 +207,13 @@ if ($act == "deletecomment" && !empty($fileid)) {
     else
         $DB->delete_records("voiceshadow_comments", array("id" => $fileid, "userid" => $USER->id));
 }
+
+
+//disable shadowing mode for audio comment
+
+//if ($act == 'addcomment') {
+//    $voiceshadow->shadowingmode = 2;
+//}
 
 
 /// Print the page header
@@ -943,7 +950,9 @@ setInterval(function(){
 
   function jInit(){
       audio = $("#audioshadowmp3");
-      addEventHandlers();
+      if ($("input[name=audioshadow]").val() == 1) {
+        addEventHandlers();
+      }
   }
 
   function addEventHandlers(){
@@ -1219,6 +1228,12 @@ function callbackjs(e){
 //----
             if (!empty($fileid) && empty($act)) {
                 $data = $DB->get_record("voiceshadow_files", array("id" => $fileid, "userid" => $USER->id));
+            }
+
+            if ($act == 'addcomment' || $voiceshadow->shadowingmode == 2) {
+                $mform->addelEment('hidden', 'audioshadow', 0);
+            } else {
+                $mform->addelEment('hidden', 'audioshadow', 1);
             }
 
             $mform->addelEment('hidden', 'filename', $filename);
